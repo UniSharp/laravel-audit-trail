@@ -8,13 +8,17 @@ Laravel Audit Trail
 ## Setup
 
 1. In `/config/app.php`, add the following to `providers`:
+
     ```
     Unisharp\AuditTrail\AuditServiceProvider::class,
     ```
+
     and the following to `aliases`:
+
     ```
     'Audit' => Unisharp\AuditTrail\Facades\Audit::class,
     ```
+    
 2. Run `php artisan vendor:publish`.
 3. In `/config/audit.php`, set your model map for Model and Log Model.
    * Model(key) means the model class you're going to be audited.
@@ -36,7 +40,7 @@ Laravel Audit Trail
        ```
        Audit::log($User, 'log in', 'the action is approved')
        ```
-       
+
   * $User is Eloquent Object here.
   * The third, forth and fifth parameters are optional.
   * You could put your modified column and column id to subject and subject_id parameters.
