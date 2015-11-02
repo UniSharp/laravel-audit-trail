@@ -28,12 +28,15 @@ Laravel Audit Trail
   1. Create a UserLog migration file
   2. Fill in your model map in `config/audit.php` like this: `'App\User' => 'App\UserLog'`
   3. In any place you want to audit your user logs
+
        ```
        Audit::log(Model $model, $action, $comment = null, $subject = null, $subject_id = null)
        ```
+
        ```
        Audit::log($User, 'log in', 'the action is approved')
        ```
+       
   * $User is Eloquent Object here.
   * The third, forth and fifth parameters are optional.
   * You could put your modified column and column id to subject and subject_id parameters.
