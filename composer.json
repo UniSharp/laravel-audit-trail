@@ -1,0 +1,22 @@
+{
+    "name": "unisharp/laravel-audit-trail",
+    "description": "Keep a change history for your models using laravel version 5.1.*",
+    "keywords": ["log", "auditing", "laravel"],
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+    {
+      "name":  "UniSharp Ltd. (Composer Package Maintainer)",
+      "homepage": "http://www.unisharp.com"
+    }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": "~5.0|~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+        "Unisharp\\AuditTrail\\": "src/"
+        }
+    }
+}
