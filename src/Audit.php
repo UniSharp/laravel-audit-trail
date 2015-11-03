@@ -3,22 +3,23 @@
 namespace Unisharp\AuditTrail;
 
 use Illuminate\Database\Eloquent\Model;
-use Unisharp\AuditTrail\Repository\LogRepo;
+use Unisharp\AuditTrail\Entity\Log;
 
 class Audit
 {
 
 	public static function log(Model $model, $action, $comment = null, $subject = null, $subject_id = null)
 	{
-		$LogRepo = self::getLogModel($model);
-
-		return $LogRepo->create([
+		$Log = self::getLogModel($model);
+		$data = array(
 			'user_id' => \Auth::id(),
 			'action' => $action,
 			'subject' => $subject,
 			'subject_id' => $subject_id,
 			'comment' => $comment
-			]);
+			);
+
+		return $Log->create($data);
 	}
 
 	public static function getLogModel(Model $model)
@@ -30,7 +31,14 @@ class Audit
 			return new $map_array[$model_name]();
 		}
 
-		return new LogRepo();
+		return new Log();
+	}
+
+	public static function clean(Model $model)
+	{
+		$Log = self::getLogModel($model);
+
+		return $Log->truncate();
 	}
 
 }
