@@ -44,7 +44,7 @@ Laravel Audit Trail
 
     * $User is an Eloquent Object here.
     * The third, forth and fifth parameters are optional.
-    * You could put your modified column and column id to subject and subject_id parameters.
+    * You could put your modified column and column id to `subject` and `subject_id` parameters.
   4. As time grows, logs would be outdated. You may clean them by using:
 
        ```
