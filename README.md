@@ -24,11 +24,11 @@ Laravel Audit Trail
    * Model(key) means the model class you're going to be audited.
    * Log model(value) stands for the model you'd like to save your auditing records.
    * You need to make your own migrations to record those logs. (there's a sample migration file in the package) 
-   * If you don't create a mapping for your model, the package will record your logs to the default `log` model.  
+   * If you don't create a mapping for your model, the package will record your logs to the default `Log` model automatically.  
 
 ## Usage
 
-* If there's a User model, and I would like to keep users' records to UserLog model
+* If there's a User model, and you would like to keep users' records to UserLog model
   1. Create a UserLog migration file
   2. Fill in your model map in `config/audit.php` like this: `'App\User' => 'App\UserLog'`
   3. In any place you want to audit your user logs
@@ -41,6 +41,6 @@ Laravel Audit Trail
        Audit::log($User, 'log in', 'the action is approved')
        ```
 
-  * $User is Eloquent Object here.
+  * $User is an Eloquent Object here.
   * The third, forth and fifth parameters are optional.
   * You could put your modified column and column id to subject and subject_id parameters.
