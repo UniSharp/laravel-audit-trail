@@ -24,7 +24,7 @@ Laravel Audit Trail
    * Model(key) means the model class you're going to be audited.
    * Log model(value) stands for the model you'd like to save your auditing records.
    * You need to make your own migrations to record those logs. (there's a sample migration file in the package) 
-   * If you don't create a mapping for your model, the package will record your logs to the default `log` model.  
+   * If you don't create a mapping for your model, the package will record your logs to the default `Log` model.  
 
 ## Usage
 
@@ -41,9 +41,9 @@ Laravel Audit Trail
        Audit::log($User, 'log in', 'the action is approved')
        ```
 
-  * $User is Eloquent Object here.
-  * The third, forth and fifth parameters are optional.
-  * You could put your modified column and column id to subject and subject_id parameters.
+    * $User is an Eloquent Object here.
+    * The third, forth and fifth parameters are optional.
+    * You could put your modified column and column id to subject and subject_id parameters.
   4. As time grows, logs would be outdated. You may clean them by using:
 
        ```
