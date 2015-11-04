@@ -13,6 +13,7 @@ class Audit
 		$Log = self::getLogModel($model);
 		$data = array(
 			'user_id' => \Auth::id(),
+			'model' => get_class($model),
 			'action' => $action,
 			'subject' => $subject,
 			'subject_id' => $subject_id,
@@ -38,7 +39,39 @@ class Audit
 	{
 		$Log = self::getLogModel($model);
 
+		if ($Log instanceof Log) {
+			return $Log->where('model', get_class($model))->delete();
+		}
+		
 		return $Log->truncate();
+	}
+
+	public static function get(Model $model)
+	{
+		$Log = self::getLogModel($model);
+
+		if ($Log instanceof Log) {
+			return Log::where('model', get_class($model))->get();
+		}
+		
+		return $Log->all();
+	}
+
+	public static function getByUserId($user_id)
+	{
+		$map_array = config('audit.model_map');
+		$Collection = new \Illuminate\Database\Eloquent\Collection();
+
+		foreach ($map_array as $key => $value) {
+			if (!class_exists($value)) {
+				continue;
+			}
+			$Log = new $value();
+			$Collection->merge($Log->where('user_id', $user_id)->get());	
+		}
+		$Collection->merge(Log::where('user_id', $user_id)->get());
+	
+		return $Collection;
 	}
 
 }
