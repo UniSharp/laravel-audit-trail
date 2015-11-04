@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLogTable extends Migration
+class CreateAuditTrailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -11,8 +11,9 @@ class CreateLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function ($table) {
+        Schema::create('audit_trails', function ($table) {
             $table->increments('id');
+            $table->string('model')->nullable();
             $table->integer('user_id')->nullable();
             $table->string('action');
             $table->string('subject')->nullable();
@@ -29,6 +30,6 @@ class CreateLogTable extends Migration
      */
     public function down()
     {
-        Schema::drop('logs');
+        Schema::drop('audit_trails');
     }
 }
