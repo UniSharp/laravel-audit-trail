@@ -11,12 +11,12 @@ class Log extends Model
      *
      * @var string
      */
-    protected $table = 'logs';
+    protected $table = 'audit_trails';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'action', 'subject', 'subject_id', 'comment'];
+    protected $fillable = ['model', 'user_id', 'action', 'subject', 'subject_id', 'comment'];
 }
