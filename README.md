@@ -45,17 +45,20 @@ Laravel Audit Trail
     * $User is an Eloquent Object here.
     * The third, forth and fifth parameters are optional.
     * You could put your modified column and column id to `subject` and `subject_id` parameters.
-  4. You can get your logs by different models by:
+
+* Other usages
+
+  *. You can get your logs by different models by:
 
        ```
        Audit::get($Model)
        ```
-  5. Get all the logs by single user by using:
+  *. Get all the logs by single user by using:
 
        ```
        Audit::getByUserId($user_id)
        ```
-  6. As time grows, logs would be outdated. You may clean them by:
+  *. As time grows, logs would be outdated. You may clean them by:
 
        ```
        Audit::clean($Model)
