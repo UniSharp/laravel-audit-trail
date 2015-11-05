@@ -23,7 +23,7 @@ Laravel Audit Trail
 3. In `/config/audit.php`, set your model map for Model and Log Model.
    * Model(key) means the model class you're going to be audited.
    * Log model(value) stands for the model you'd like to save your auditing records.
-   * You need to make your own migrations and models to record those logs. (there's a sample migration and model(entity) files in the package) 
+   * You need to make your own migrations and models to record those logs. (there's a sample migration and model(entity) file in the package) 
    * If you don't create a mapping for your model, the package will record your logs to the default `Log` model.
 4. Run `php artisan migrate`.
 
