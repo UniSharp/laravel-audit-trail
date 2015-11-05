@@ -20,7 +20,11 @@ class Audit
 			'comment' => $comment
 			);
 
-		return $Log->create($data);
+		try {
+			return $Log->create($data);
+		} catch (Illuminate\Database\QueryException $e) {
+			\Log::error('Something went wrong while logging model: ' . get_class($model));
+		}
 	}
 
 	public static function getLogModel(Model $model)
@@ -67,10 +71,11 @@ class Audit
 				continue;
 			}
 			$Log = new $value();
-			$Collection->merge($Log->where('user_id', $user_id)->get());	
+			$Collection = $Collection->merge($Log->where('user_id', $user_id)->get());	
 		}
-		$Collection->merge(Log::where('user_id', $user_id)->get());
-	
+
+		$Collection = $Collection->merge(Log::where('user_id', $user_id)->get());
+
 		return $Collection;
 	}
 

@@ -23,7 +23,7 @@ Laravel Audit Trail
 3. In `/config/audit.php`, set your model map for Model and Log Model.
    * Model(key) means the model class you're going to be audited.
    * Log model(value) stands for the model you'd like to save your auditing records.
-   * You need to make your own migrations to record those logs. (there's a sample migration file in the package) 
+   * You need to make your own migrations and models to record those logs. (there's a sample migration and model(entity) files in the package) 
    * If you don't create a mapping for your model, the package will record your logs to the default `Log` model.
 4. Run `php artisan migrate`.
 
@@ -45,8 +45,18 @@ Laravel Audit Trail
     * $User is an Eloquent Object here.
     * The third, forth and fifth parameters are optional.
     * You could put your modified column and column id to `subject` and `subject_id` parameters.
-  4. As time grows, logs would be outdated. You may clean them by using:
+  4. You can get your logs by different models by:
 
        ```
-       Audit::clean($User)
+       Audit::get($Model)
+       ```
+  5. Get all the logs by single user by using:
+
+       ```
+       Audit::getByUserId($user_id)
+       ```
+  6. As time grows, logs would be outdated. You may clean them by:
+
+       ```
+       Audit::clean($Model)
        ```
