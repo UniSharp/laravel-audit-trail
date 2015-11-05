@@ -48,17 +48,17 @@ Laravel Audit Trail
 
 * Other usages
 
-  *. You can get your logs by different models by:
+  * You can get your logs by different models by:
 
        ```
        Audit::get($Model)
        ```
-  *. Get all the logs by single user by using:
+  * Get all the logs by single user by using:
 
        ```
        Audit::getByUserId($user_id)
        ```
-  *. As time grows, logs would be outdated. You may clean them by:
+  * As time grows, logs would be outdated. You may clean them by:
 
        ```
        Audit::clean($Model)
