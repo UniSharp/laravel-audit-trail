@@ -18,48 +18,55 @@ Laravel Audit Trail
     ```
     'Audit' => Unisharp\AuditTrail\Facades\Audit::class,
     ```
-    
-2. Run `php artisan vendor:publish`.
-3. In `/config/audit.php`, set your model map for Model and Log Model.
-   * Model(key) means the model class you're going to be audited.
-   * Log model(value) stands for the model you'd like to save your auditing records.
-   * You need to make your own migrations and models to record those logs. (there's a sample migration and model(entity) file in the package) 
-   * If you don't create a mapping for your model, the package will record your logs to the default `Log` model.
-4. Run `php artisan migrate`.
+2. Run `php artisan migrate`.
 
 ## Usage
 
-* If there's a User model, and I would like to keep users' records to UserLog model
-  1. Create a UserLog migration file
-  2. Fill in your model map in `config/audit.php` like this: `'App\User' => 'App\UserLog'`
-  3. In any place you want to audit your user logs
+> All your logs will be recorded in 'audit_trails' table. 
 
-       ```
-       Audit::log(Model $model, $action, $comment = null, $subject = null, $subject_id = null)
+* You need to add a trait to the model you're going to audit.
+    
+    ```php
+    class User extends Eloquent
+    {
+      use \Unisharp\AuditTrail\Auditable;
+
+      protected $table = 'users';
+
+      protected $hidden = ['password'];
+
+      protected $fillable = ['username', 'email', 'password'];
+    }
+    ```
+
+* In any place you want to audit your user logs
+
+       ```php
+       $User->log($action, $comment = null, $subject = null, $subject_id = null)
        ```
 
-       ```
-       Audit::log($User, 'log in', 'the action is approved')
+       ```php
+       $User->log('log in', 'the action is approved')
        ```
 
     * $User is an Eloquent Object here.
-    * The third, forth and fifth parameters are optional.
+    * The second, third parameters are optional.
     * You could put your modified column and column id to `subject` and `subject_id` parameters.
 
 * Other usages
 
-  * You can get your logs by different models by:
+  * You can get your model logs by:
 
-       ```
-       Audit::get($Model)
+       ```php
+       $User->getLogs();
        ```
   * Get all the logs by single user by using:
 
-       ```
+       ```php
        Audit::getByUserId($user_id)
        ```
   * As time grows, logs would be outdated. You may clean them by:
 
-       ```
-       Audit::clean($Model)
+       ```php
+       $User->cleanLogs()
        ```
