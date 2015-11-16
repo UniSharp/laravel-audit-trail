@@ -18,7 +18,8 @@ Laravel Audit Trail
     ```
     'Audit' => Unisharp\AuditTrail\Facades\Audit::class,
     ```
-2. Run `php artisan migrate`.
+2. Run `php artisan vendor:publish`.
+3. Run `php artisan migrate`.
 
 ## Usage
 
@@ -46,7 +47,15 @@ Laravel Audit Trail
        ```
 
        ```php
+       Audit::log($action, $comment = null)
+       ```
+
+       ```php
        $User->log('log in', 'the action is approved')
+       ```
+
+       ```php
+       Audit::log('log in', 'the action is approved')
        ```
 
     * $User is an Eloquent Object here.
