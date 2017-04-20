@@ -20,4 +20,12 @@ class Audit
 			);
 		return Log::create($data);
 	}
+
+	public static function all($paginate = true, $limit = 15)
+	{
+		if (!$paginate) {
+			Log::all();
+		}
+		return Log::paginate($limit);
+	}
 }
