@@ -79,3 +79,7 @@ Laravel Audit Trail
        ```php
        $User->cleanLogs()
        ```
+## License
+
+This package is licensed under [MIT license](https://unisharp.mit-license.org/).
+       
