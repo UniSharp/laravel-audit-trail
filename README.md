@@ -42,21 +42,21 @@ Laravel Audit Trail
 
 * In any place you want to audit your user logs
 
-       ```php
-       $User->log($action, $comment = null, $subject = null, $subject_id = null)
-       ```
+   ```php
+   $User->log($action, $comment = null, $subject = null, $subject_id = null)
+   ```
 
-       ```php
-       Audit::log($action, $comment = null)
-       ```
+   ```php
+   Audit::log($action, $comment = null)
+   ```
 
-       ```php
-       $User->log('log in', 'the action is approved')
-       ```
+   ```php
+   $User->log('log in', 'the action is approved')
+   ```
 
-       ```php
-       Audit::log('log in', 'the action is approved')
-       ```
+   ```php
+   Audit::log('log in', 'the action is approved')
+   ```
 
     * $User is an Eloquent Object here.
     * The second, third parameters are optional.
