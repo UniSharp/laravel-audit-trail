@@ -18,7 +18,7 @@ class CreateAuditTrailTable extends Migration
             $table->string('action');
             $table->string('subject')->nullable();
             $table->string('subject_id')->nullable();
-            $table->string('comment')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
